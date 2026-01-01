@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqrtm386igufl"]
+
+[ext_resource type="Script" uid="uid://f0yb3dhfrf12" path="res://scripts/healtbar.gd" id="1_3dq8n"]
+
+[node name="HealtBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 21.0
+offset_right = 829.0
+offset_bottom = 54.0
+show_percentage = false
+script = ExtResource("1_3dq8n")

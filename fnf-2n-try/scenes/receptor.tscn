@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://8nisni38m46k"]
+
+[ext_resource type="Script" uid="uid://bgib2df667atm" path="res://scripts/ReceptorUp.gd" id="1_l11p2"]
+[ext_resource type="Texture2D" uid="uid://04cp00xpyes7" path="res://resources/arrows.png" id="1_vvfsj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l11p2"]
+size = Vector2(55, 70)
+
+[node name="receptor" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_l11p2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -2)
+texture = ExtResource("1_vvfsj")
+region_enabled = true
+region_rect = Rect2(58, 3.5, 56, 58)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -4)
+shape = SubResource("RectangleShape2D_l11p2")

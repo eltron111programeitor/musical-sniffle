@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://brv330radkvap"]
+
+[ext_resource type="Script" uid="uid://ctj7i5epera1t" path="res://scripts/floating_text.gd" id="1_iwtc3"]
+[ext_resource type="FontFile" uid="uid://cqc0vg1km4v48" path="res://resources/FridayNightFunkin-Regular.ttf" id="2_fc4js"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a7i6x"]
+font = ExtResource("2_fc4js")
+font_size = 36
+
+[node name="FloatingText" type="Node2D"]
+script = ExtResource("1_iwtc3")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "PERFECT!"
+label_settings = SubResource("LabelSettings_a7i6x")
+horizontal_alignment = 1
+vertical_alignment = 1

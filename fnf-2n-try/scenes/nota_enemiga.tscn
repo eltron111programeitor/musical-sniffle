@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bifiog2k8yf8k"]
+
+[ext_resource type="Texture2D" uid="uid://04cp00xpyes7" path="res://resources/arrows.png" id="1_mloc4"]
+[ext_resource type="Script" uid="uid://kwt2sdtr1avb" path="res://scripts/nota_enemiga.gd" id="1_n6brc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6brc"]
+size = Vector2(52, 56)
+
+[node name="NotaEnemiga" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_n6brc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mloc4")
+region_enabled = true
+region_rect = Rect2(1.80002, 69.5, 56.1, 63)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_n6brc")
