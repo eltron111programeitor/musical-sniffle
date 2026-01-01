@@ -21,14 +21,22 @@ jobs:
         chmod +x Godot_v4.4.1-stable_linux.x86_64
         echo "✅ Godot descargado"
         
-    - name: 3. Verificar estructura
+    - name: 3. Verificar estructura y configuración
       run: |
         echo "📁 Estructura del proyecto:"
         ls -la
         echo "📁 Dentro de fnf-2-try:"
         ls -la fnf-2-try/
-        echo "📄 Contenido de export_presets.cfg:"
-        cat fnf-2-try/export_presets.cfg || echo "No encontrado"
+        echo "📄 Verificando export_presets.cfg..."
+        if grep -q "name=\"Android\"" fnf-2-try/export_presets.cfg; then
+          echo "✅ Preset 'Android' encontrado"
+          grep "name=" fnf-2-try/export_presets.cfg
+        else
+          echo "❌ ERROR: No hay preset 'Android'"
+          echo "Contenido del archivo:"
+          cat fnf-2-try/export_presets.cfg
+          exit 1
+        fi
         
     - name: 4. Crear APK Android
       run: |
