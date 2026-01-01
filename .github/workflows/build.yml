@@ -1,31 +1,50 @@
-name: Build APK
+name: Build Android APK Automático
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  workflow_dispatch:  # Permite ejecutar manualmente
 
 jobs:
-  build:
+  build-apk:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Descargar código
+    - name: 1. Descargar proyecto
       uses: actions/checkout@v4
       
-    - name: Descargar Godot
+    - name: 2. Descargar Godot 4.4.1
       run: |
         wget -q https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip
         unzip -q Godot_v4.4.1-stable_linux.x86_64.zip
         chmod +x Godot_v4.4.1-stable_linux.x86_64
+        echo "✅ Godot descargado"
         
-    - name: Crear APK desde fnf-2-try
+    - name: 3. Verificar estructura
+      run: |
+        echo "📁 Estructura del proyecto:"
+        ls -la
+        echo "📁 Dentro de fnf-2-try:"
+        ls -la fnf-2-try/
+        echo "📄 Contenido de export_presets.cfg:"
+        cat fnf-2-try/export_presets.cfg || echo "No encontrado"
+        
+    - name: 4. Crear APK Android
       run: |
         cd fnf-2-try
-        ../Godot_v4.4.1-stable_linux.x86_64 --headless --export-debug "Android" ../fnf_game.apk
+        echo "🎮 Exportando APK desde fnf-2-try..."
+        ../Godot_v4.4.1-stable_linux.x86_64 --headless --export-debug "Android" ../musical_sniffle.apk
+        echo "✅ APK creado"
         
-    - name: Subir APK para descargar
+    - name: 5. Verificar APK creado
+      run: |
+        echo "📦 Archivos creados:"
+        ls -lh *.apk || echo "⚠️ No hay APK"
+        
+    - name: 6. Subir APK para descargar
+      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: Musical-Sniffle-APK
-        path: fnf_game.apk
+        path: musical_sniffle.apk
+        retention-days: 7
