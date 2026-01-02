@@ -12,23 +12,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download Godot Executable
-        # Descargamos el ejecutable directamente con wget y lo renombramos
+      - name: Setup Godot and Templates
         run: |
           mkdir -p ~/.local/share/godot
-          wget -O ~/.local/share/godot/Godot_v4.2.1-stable_linux.x86_64.zip https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux.x86_64.zip
-          unzip -j ~/.local/share/godot/Godot_v4.2.1-stable_linux.x86_64.zip 'Godot_v4.2.1-stable_linux.x86_64' -d ~/.local/share/godot/
+          wget -q -O ~/godot.zip https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux.x86_64.zip
+          unzip -q -j ~/godot.zip 'Godot_v4.2.1-stable_linux.x86_64' -d ~/.local/share/godot/
           chmod +x ~/.local/share/godot/Godot_v4.2.1-stable_linux.x86_64
-
-      - name: Download Export Templates
-        # Descargamos las plantillas de exportación para Android
-        run: |
-          wget -O ~/.local/share/godot/templates.zip https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_export_templates.tpz
-          mkdir -p ~/.local/share/godot/export_templates
-          unzip ~/.local/share/godot/templates.zip -d ~/.local/share/godot/export_templates/
+          wget -q -O ~/templates.tpz https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/4.2.1.stable/
+          unzip -q ~/templates.tpz -d ~/.local/share/godot/export_templates/4.2.1.stable/
 
       - name: Export Android APK
-        # Llamamos directamente al ejecutable que descargamos
         run: |
           cd fnf-2n-try
           ~/.local/share/godot/Godot_v4.2.1-stable_linux.x86_64 --headless --export-release "Android" "MusicalSniffle.apk"
