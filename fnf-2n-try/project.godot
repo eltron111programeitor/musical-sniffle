@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="fnf 2n try"
+config/name="fnf 2n try" # <-- Mantén el nombre original de tu carpeta
 run/main_scene="uid://y3cmoyxwas25"
-config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+# ¡LÍNEA CLAVE! Define el paquete Android AQUÍ y AHORA
+application/config/package="com.eltron111.musicalsniffle.app"
+
+# ¡LÍNEA CLAVE! Agrega "Android" a las características EXISTENTES del proyecto
+config/features=PackedStringArray("4.4", "Forward Plus", "Android")
 
 [autoload]
 
